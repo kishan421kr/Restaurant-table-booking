@@ -1,0 +1,7 @@
+[
+    { "tableNumber": 1, "capacity": 2, "isAvailable": true },
+    { "tableNumber": 2, "capacity": 4, "isAvailable": false },
+    { "tableNumber": 3, "capacity": 6, "isAvailable": true },
+    { "tableNumber": 4, "capacity": 4, "isAvailable": true },
+    { "tableNumber": 5, "capacity": 8, "isAvailable": false }
+]

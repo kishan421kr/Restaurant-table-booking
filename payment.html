@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="payment.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+</head>
+<body>
+    <section id="booking-confirmation">
+        <div class="confirmation-content">
+            <h2>Booking Confirmation</h2>
+            
+            <div class="booking-details">
+                <h3>Your Booking Details</h3>
+                <p><strong>Date:</strong> <span id="booking-date">12/25/2024</span></p>
+                <p><strong>Time:</strong> <span id="booking-time">7:00 PM</span></p>
+                <p><strong>Number of Guests:</strong> <span id="guests-count">4</span></p>
+            </div>
+            
+            <div class="charges">
+                <h3>Charges</h3>
+                <p>Sitting Charges: <strong>₹100</strong> per person</p>
+                <p>Total Charges: <strong>₹<span id="total-amount">400</span></strong> (including sitting charges)</p>
+            </div>
+    
+            <div class="payment-section">
+                <h3>Payment</h3>
+                <p>Scan the QR code below to complete your payment:</p>
+                <div class="qr-code">
+                    <img src="https://via.placeholder.com/200x200.png?text=Payment+QR+Code" alt="QR Code">
+                </div>
+            </div>
+    
+            <div class="confirm-button">
+                <a href="/confirm-booking" class="button">Confirm Booking</a>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    // Example data (replace with actual booking data from form submission)
+    let bookingDate = "12/25/2024"; // Example date
+    let bookingTime = "7:00 PM";    // Example time
+    let numberOfGuests = 4;         // Example number of guests
+    let sittingChargePerPerson = 100; // Sitting charge per person
+
+    // Populate the details on the confirmation page
+    document.getElementById("booking-date").textContent = bookingDate;
+    document.getElementById("booking-time").textContent = bookingTime;
+    document.getElementById("guests-count").textContent = numberOfGuests;
+
+    // Calculate the total charges
+    let totalCharges = sittingChargePerPerson * numberOfGuests;
+    document.getElementById("total-amount").textContent = totalCharges;
+
+    // Booking details string to encode in the QR code
+    let paymentDetails = `Booking Date: ${bookingDate}, Time: ${bookingTime}, Guests: ${numberOfGuests}, Total Charges: ₹${totalCharges}`;
+
+    // Generate the QR code
+    QRCode.toDataURL(paymentDetails, function (err, url) {
+        if (err) {
+            console.error(err);
+        } else {
+            // Display the QR code image in the specified div
+            document.getElementById("qrcode").innerHTML = `<img src="${url}" alt="Payment QR Code">`;
+        }
+    });
+});
+
+    </script>
+    
+</body>
+</html>
